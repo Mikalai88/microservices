@@ -27,7 +27,7 @@ public class SkillController {
 
   @PostMapping
   public SkillDto createSkill(@RequestBody SkillDto skillDto) {
-    String positionServiceUrl = "http://localhost:{PORT}/positions/{id}";
+    String positionServiceUrl = "http://POSITION-SERVICE/positions/" + skillDto.positionId();
     ResponseEntity<PositionDto> response = restTemplate.getForEntity(positionServiceUrl, PositionDto.class, skillDto.positionId());
 
     if (response.getStatusCode() != HttpStatus.OK || response.getBody() == null) {
